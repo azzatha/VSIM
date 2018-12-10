@@ -15,8 +15,10 @@ This user guide have been tested on Ubuntu version 16.04.
 ## Database requirements 
 1. Download [MCAP]() database file.
 2. Download and run the script [download_DB.sh]() 
-  $ chmod +x download_DB.sh
-  $./download_DB.sh
+```
+     $chmod +x download_DB.sh
+     $./download_DB.sh
+```
 
 ## Docker Container
 1. Install [Docker](https://docs.docker.com/)
