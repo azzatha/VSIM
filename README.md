@@ -19,6 +19,11 @@ This user guide have been tested on Ubuntu version 16.04.
      $chmod +x download_DB.sh
      $./download_DB.sh
 ```
+3. Download script [loadModeInh.groovy]() to ClinVar folder
+Run the script
+```
+    groovy ./ClinVar/loadModeInh.groovy | grep "^OMIM" > ./ClinVar/omim_mode.txt
+```
 
 ## Docker Container
 1. Install [Docker](https://docs.docker.com/)
