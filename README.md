@@ -1,6 +1,6 @@
 # VSIM
 
-A phenotype-based tool to annotate and prioritize disease variants in WES and WGS data
+Visualization and Simulation of Variants in Personal Genomes With an Application to Premarital Testing
 
 This user guide have been tested on Ubuntu version 16.04.
 
