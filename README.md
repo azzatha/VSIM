@@ -45,7 +45,9 @@ Run the script
 ## Usage:
 
 - VSIM accepts a VCF file as input, annotates the variants in the VCF file, and then visualizes the results on a chromosomal ideogram.
-- To run the tool, the user needs to provide a **VCF file** to annotating and Visualizing Personal Genomic Data as showed in [Example1](https://github.com/azzatha/VSIM/blob/master/vsim.com/result1example.html) Figure 1 provides an example of the output.
+- To run the tool, the user needs to provide a **VCF file** to annotating and Visualizing Personal Genomic Data as showed in [Example1](https://github.com/azzatha/VSIM/blob/master/vsim.com/result1example.html) ![indvres](https://user-images.githubusercontent.com/31382680/49799724-add17400-fd56-11e8-8f56-6a1136f71923.png) provides an example of the output.
+
+
 
 - For simulating child cohorts and the application to premarital testing, the user needs to provide two VCF files, represent the mother and father genomics sequence data. Then the tool will simulate a population of children and analysis the result here is an example [Example2](https://github.com/azzatha/VSIM/blob/master/vsim.com/result2example.html). Figure 2 provides an example of the simulation result. 
 
