@@ -183,12 +183,11 @@
 
         <?php
 
-			$command= ('./task1.sh '. $unique_name);
-			#$str= exec($command . " > /dev/null &" ); 
-			#file_put_contents("task1log.txt", $str);
-
-			$str= shell_exec($command.' 2>&1 > out.log &');
-			file_put_contents("task1log.txt", $str);
+	$command= ('./task1.sh '. $unique_name);
+	#$str= exec($command . " > /dev/null &" ); 
+	#file_put_contents("task1log.txt", $str);
+	$str= shell_exec($command.' 2>&1 > out.log &');
+	file_put_contents("task1log.txt", $str);
 
         ?>
 
