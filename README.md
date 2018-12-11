@@ -13,15 +13,18 @@ This user guide have been tested on Ubuntu version 16.04.
  - Python 3
  
 ## Database requirements 
-1. Download [MCAP]() database file.
-2. Download and run the script [download_DB.sh](https://github.com/azzatha/VSIM/blob/master/VSIM/download_DB.sh) 
+1. Download [MCAP](https://drive.google.com/file/d/13N0meotI2rTfbLt-GuL1ic-O3uokLvwH/view?usp=sharing) database into the directory `./VSIM/annovar/humandb` 
+
+2. Download the Human reference genomes [1000g_v37_phase2.sdf.zip](https://s3.amazonaws.com/rtg-datasets/references/1000g_v37_phase2.sdf.zip) into the directory `./VSIM/Simulation` 
+
+3. Download and run the script [download_DB.sh](https://github.com/azzatha/VSIM/blob/master/VSIM/download_DB.sh) 
 ```
      $chmod +x download_DB.sh
      $./download_DB.sh
 ```
-Make sure that all the database inside the directory`./VSIM/db` 
+Make sure that all the database inside the directory `./VSIM/db` 
 
-3. Download script [loadModeInh.groovy]() to ClinVar folder
+4. Download script [loadModeInh.groovy]() to ClinVar folder
 Run the script
 ```
     groovy ./ClinVar/loadModeInh.groovy | grep "^OMIM" > ./ClinVar/omim_mode.txt
@@ -42,9 +45,9 @@ Run the script
 ## Usage:
 
 - VSIM accepts a VCF file as input, annotates the variants in the VCF file, and then visualizes the results on a chromosomal ideogram.
-- To run the tool, the user needs to provide a **VCF file** to annotating and Visualizing Personal Genomic Data as showed in [Example1]() Figure 1 provides an example of the output.
+- To run the tool, the user needs to provide a **VCF file** to annotating and Visualizing Personal Genomic Data as showed in [Example1](https://github.com/azzatha/VSIM/blob/master/vsim.com/result1example.html) Figure 1 provides an example of the output.
 
-- For simulating child cohorts and the application to premarital testing, the user needs to provide two VCF files, represent the mother and father genomics sequence data. Then the tool will simulate a population of children and analysis the result here is an example [Example2](). Figure 2 provides an example of the simulation result. 
+- For simulating child cohorts and the application to premarital testing, the user needs to provide two VCF files, represent the mother and father genomics sequence data. Then the tool will simulate a population of children and analysis the result here is an example [Example2](https://github.com/azzatha/VSIM/blob/master/vsim.com/result2example.html). Figure 2 provides an example of the simulation result. 
 
 - VSIM generates chromosomal views based on chromosomal ideograms and shows the chromosomal positions at which a functional variant has been found. 
 - Different categories of variants are shown in different colors, and it is possible to filter variants by their type (whether they are Mendelian disease variants, pharmacogenomic variants, etc.). 
