@@ -14,11 +14,12 @@ This user guide have been tested on Ubuntu version 16.04.
  
 ## Database requirements 
 1. Download [MCAP]() database file.
-2. Download and run the script [download_DB.sh]() 
+2. Download and run the script [download_DB.sh](https://github.com/azzatha/VSIM/blob/master/VSIM/download_DB.sh) 
 ```
      $chmod +x download_DB.sh
      $./download_DB.sh
 ```
+Make sure that all the result added to *./VSIM/db* folder
 3. Download script [loadModeInh.groovy]() to ClinVar folder
 Run the script
 ```
