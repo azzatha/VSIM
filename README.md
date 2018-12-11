@@ -19,7 +19,8 @@ This user guide have been tested on Ubuntu version 16.04.
      $chmod +x download_DB.sh
      $./download_DB.sh
 ```
-Make sure that all the result added to *./VSIM/db* folder
+Make sure that all the database inside the directory`./VSIM/db` 
+
 3. Download script [loadModeInh.groovy]() to ClinVar folder
 Run the script
 ```
