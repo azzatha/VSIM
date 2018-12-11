@@ -1,9 +1,5 @@
 <!doctype html>
 <!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!-->
 <html class="no-js" lang="">
 <!--<![endif]-->
 <html class="no-js" lang="">
@@ -70,24 +66,23 @@
                 <li class='legend-title' id="li_t1">Database filter:</li>
                 <li id="li_t1">
                     <label for="filter_1">
-                        <input type="checkbox" id="filter_1" checked /><span style='background:#FF0000'></span>M-CAP
-                        Prediction Score</li>
+                        <input type="checkbox" id="filter_1" checked /><span style='background:#FF0000'></span>M-CAP Prediction Score</li>
                 <li id="li_t1">
                     <label for="filter_2">
-                        <input type="checkbox" id="filter_2" checked /><span style='background:#999'></span>PharmGKB
-                        Database</li>
+                        <input type="checkbox" id="filter_2" checked /><span style='background:#999'></span>PharmGKB Database
+                </li>
                 <li id="li_t1">
                     <label for="filter_3">
-                        <input type="checkbox" id="filter_3" checked /><span style='background:rgb(136, 129, 228) '></span>ClinVar
-                        Database</li>
+                        <input type="checkbox" id="filter_3" checked /><span style='background:rgb(136, 129, 228) '></span>ClinVar Database
+                </li>
                 <li id="li_t1">
                     <label for="filter_4">
-                        <input type="checkbox" id="filter_4" checked /><span style='background:#00BFFF'></span>GWAS
-                        Database</li>
+                        <input type="checkbox" id="filter_4" checked /><span style='background:#00BFFF'></span>GWAS Database
+                </li>
                 <li id="li_t1">
                     <label for="filter_5">
-                        <input type="checkbox" id="filter_5" checked /><span style='background:#FF8C00'></span>DIDA
-                        Database</li>
+                        <input type="checkbox" id="filter_5" checked /><span style='background:#FF8C00'></span>DIDA Database
+                </li>
             </ul>
         </div>
     </div>
@@ -128,13 +123,20 @@
             width = this.offsetWidth;
             newPoint = (this.value - this.getAttribute("min")) / (this.getAttribute("max") - this.getAttribute("min"));
             offset = -1;
-            if (newPoint < 0) { newPlace = 0; }
-            else if (newPoint > 1) { newPlace = width; }
-            else { newPlace = width * newPoint + offset; offset -= newPoint; }
+            if (newPoint < 0) {
+                newPlace = 0;
+            } else if (newPoint > 1) {
+                newPlace = width;
+            } else {
+                newPlace = width * newPoint + offset;
+                offset -= newPoint;
+            }
             siblings = this.parentNode.childNodes;
             for (var i = 0; i < siblings.length; i++) {
                 sibling = siblings[i];
-                if (sibling.id == this.id) { k = true; }
+                if (sibling.id == this.id) {
+                    k = true;
+                }
                 if ((k == true) && (sibling.nodeName == "OUTPUT")) {
                     outputTag = sibling;
                 }
@@ -143,7 +145,6 @@
             outputTag.style.marginLeft = offset + "%";
             outputTag.innerHTML = this.value;
         }
-
 
         function modifyInputs() {
             var inputs = document.getElementsByTagName("input");
@@ -165,7 +166,7 @@
 
         var d3 = Ideogram.d3;
         var ideogram, inputs, Likelihood;
-        
+
         var config = {
             organism: 'human',
             container: '#ideogram-container',
@@ -181,19 +182,18 @@
 
         ideogram = new Ideogram(config);
         inputs = document.querySelectorAll('input[type="checkbox"]:not([value=""])');
-        inputs.forEach(function (input) {
-            input.addEventListener('click', function () {
+        inputs.forEach(function(input) {
+            input.addEventListener('click', function() {
                 updateTracks();
             });
         });
 
         Likelihood = document.querySelectorAll('input[type="range"]:not([value=""])');
-        Likelihood.forEach(function (likelihood) {
-            likelihood.addEventListener('change', function () {
+        Likelihood.forEach(function(likelihood) {
+            likelihood.addEventListener('change', function() {
                 updateLikelihood();
             });
         });
-
 
         var selectedTracks;
         var values;
@@ -207,7 +207,7 @@
 
         function updateSelectedTracks() {
             selectedTracks = [];
-            inputs.forEach(function (input) {
+            inputs.forEach(function(input) {
                 var trackIndex = parseInt(input.getAttribute('id').split('_')[1]);
                 // var Likelihood = document.querySelectorAll('input[type="range"]:not([value=""])');
                 if (input.checked) {
@@ -226,11 +226,10 @@
 
         function updateLikelihoodValues() {
             values = []
-            Likelihood.forEach(function (likelihood) {
+            Likelihood.forEach(function(likelihood) {
                 values.push(likelihood.value)
             });
         }
-
     </script>
 </body>
 
@@ -244,7 +243,7 @@
         white-space: nowrap;
         margin-left: 130px;
     }
-
+    
     #slid {
         width: 140px;
         margin-left: 49px;
@@ -252,7 +251,7 @@
         font-weight: bold;
         height: 0px;
     }
-
+    
     .slider p {
         display: inline-block;
         text-align: left;
@@ -262,9 +261,8 @@
         float: left;
         padding: 1px;
         margin-bottom: 30px;
-
     }
-
+    
     #s1 {
         background-image: linear-gradient(#267265, #93d3d0);
         width: 30px;
@@ -279,7 +277,7 @@
         /* position: absolute; */
         margin-bottom: 30px;
     }
-
+    
     #s2 {
         background-image: linear-gradient(#267265, #93d3d0);
         width: 30px;
@@ -293,10 +291,8 @@
         /* margin-left: 10px; */
         /* position: absolute; */
         margin-bottom: 30px;
-
-
     }
-
+    
     #s3 {
         background-image: linear-gradient(#267265, #93d3d0);
         width: 30px;
@@ -310,9 +306,8 @@
         /* margin-left: 10px; */
         /* position: absolute; */
         margin-bottom: 30px;
-
     }
-
+    
     #s4 {
         background-image: linear-gradient(#267265, #93d3d0);
         width: 30px;
@@ -326,9 +321,8 @@
         /* margin-left: 10px; */
         /* position: absolute; */
         margin-bottom: 30px;
-
     }
-
+    
     #s5 {
         background-image: linear-gradient(#267265, #93d3d0);
         width: 30px;
@@ -342,67 +336,61 @@
         /* margin-left: 10px; */
         /* position: absolute; */
         margin-bottom: 30px;
-
     }
-
+    
     #f1 {
         position: relative;
         margin-left: 100px;
         display: inline-block;
         width: 150px;
         margin-bottom: 30px;
-
     }
-
+    
     #f2 {
         position: absolute;
         margin-left: 100px;
         width: 140px;
         display: inline-block;
         margin-bottom: 30px;
-
     }
-
+    
     #f3 {
         position: absolute;
         margin-left: 340px;
         width: 140px;
         display: inline-block;
         margin-bottom: 30px;
-
     }
-
+    
     #f4 {
         position: absolute;
         margin-left: 540px;
         width: 140px;
         display: inline-block;
         margin-bottom: 30px;
-
     }
-
+    
     #f5 {
         position: absolute;
         margin-left: 740px;
         width: 140px;
         display: inline-block;
         margin-bottom: 30px;
-
     }
-
+    
     .my-legend {
         width: 1300px;
         margin-top: 0px;
         margin-bottom: 40px;
         margin-left: 35px;
     }
-
+    
     .my-legend .legend-title {
         text-align: center;
         font-weight: bold;
         font-size: 130%;
     }
-
+    
     .my-legend .legend-scale ul {
         margin: 0;
         padding: 0;
@@ -411,7 +399,7 @@
         overflow: hidden;
         text-align: center;
     }
-
+    
     .my-legend .legend-scale ul li {
         font-size: 90%;
         list-style: none;
@@ -423,12 +411,12 @@
         /* margin-right: auto;
       margin-left: auto; */
     }
-
+    
     #li_t1 {
         float: left;
         padding: 13px;
     }
-
+    
     .my-legend ul.legend-labels li span {
         display: block;
         float: left;
@@ -437,7 +425,7 @@
         margin-right: 30px;
         border: 1px solid #999;
     }
-
+    
     .my-legend .legend-source {
         font-size: 70%;
         margin: center;
@@ -445,19 +433,18 @@
         clear: both;
         margin-bottom: 0%;
     }
-
+    
     .my-legend a {
         color: #777;
     }
-
+    
     #filter_1,
     #filter_2,
     #filter_3,
     #filter_4,
     #filter_5 {
-        margin-right: 3px;
+    margin-right: 3px;
     }
 </style>
-
 
 </html>
