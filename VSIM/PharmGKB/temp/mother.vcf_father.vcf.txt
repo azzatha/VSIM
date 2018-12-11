@@ -1,0 +1,12 @@
+ 	1.0
+Arthritis, Juvenile Rheumatoid,Arthritis, Psoriatic,Arthritis, Rheumatoid,Drug Toxicity 	1.0
+Carcinoma, Non-Small-Cell Lung 	1.0
+Carcinoma, Non-Small-Cell Lung,Mesothelioma 	1.0
+Cocaine-Related Disorders 	1.0
+Colonic Neoplasms 	1.0
+Coronary Artery Disease,Myocardial Infarction 	1.0
+Graft vs Host Disease,Leukemia,Leukemia, Myelogenous, onic, BCR-ABL Positive 	1.0
+Hypertension 	1.0
+Neoplasms 	1.0
+Precursor Cell Lymphoblastic Leukemia-Lymphoma 	1.0
+Schizophrenia 	1.0

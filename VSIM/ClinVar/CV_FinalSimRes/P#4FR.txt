@@ -1,0 +1,39 @@
+Carrier of the Disease	223000	0.48
+Carrier of the Disease	261515	0.52
+Carrier of the Disease	262300	1.0
+Carrier of the Disease	274270	1.0
+Carrier of the Disease	276300	0.55
+Carrier of the Disease	601071	1.0
+Carrier of the Disease	606574	0.52
+Carrier of the Disease	608233	0.45
+Carrier of the Disease	612423	0.51
+Have the Disease	109400	0.51
+Have the Disease	115000	1.0
+Have the Disease	143890	0.52
+Have the Disease	170400	1.0
+Have the Disease	191100	0.41
+Have the Disease	601198	1.0
+Have the Disease	606764	1.0
+Have the Disease	613881	0.6
+Have the Disease	614321	0.61
+None	109400	0.49
+None	130050	1.0
+None	143890	0.48
+None	187300	1.0
+None	191100	0.59
+None	223000	0.52
+None	256800	1.0
+None	261515	0.48
+None	276300	0.45
+None	606574	0.48
+None	606777	1.0
+None	608233	0.55
+None	612423	0.49
+None	613881	0.4
+None	614165	1.0
+None	614321	0.39
+None	614328	1.0
+None	614350	1.0
+None	614373	1.0
+None	615363	1.0
+None	615550	1.0
