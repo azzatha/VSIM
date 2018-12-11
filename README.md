@@ -53,6 +53,7 @@ Run the script
 
 - For simulating child cohorts and the application to premarital testing, the user needs to provide two VCF files, represent the mother and father genomics sequence data. Then the tool will simulate a population of children and analysis the result here is an example [Example2](https://github.com/azzatha/VSIM/blob/master/vsim.com/result2example.html). the following figure provides an example of the simulation result. 
 
+<img width="1376" alt="simres" src="https://user-images.githubusercontent.com/31382680/49799992-72837500-fd57-11e8-95ca-bf374842363f.png">
 
 
 - VSIM generates chromosomal views based on chromosomal ideograms and shows the chromosomal positions at which a functional variant has been found. 
