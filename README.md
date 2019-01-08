@@ -25,8 +25,7 @@ This user guide have been tested on Ubuntu version 16.04.
 ```
 Make sure that all the database inside the directory `./VSIM/db` 
 
-4. Download script [loadModeInh.groovy](https://github.com/azzatha/VSIM/blob/master/VSIM/ClinVar/loadModeInh.groovy) to `./VSIM/ClinVar` folder. Then
-Run the script
+4. Download script [loadModeInh.groovy](https://github.com/azzatha/VSIM/blob/master/VSIM/ClinVar/loadModeInh.groovy) to `./VSIM/ClinVar` folder. Then Run the script from `VSIM` folder:
 ```
     groovy ./ClinVar/loadModeInh.groovy | grep "^OMIM" > ./ClinVar/omim_mode.txt
 ```
