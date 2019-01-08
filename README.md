@@ -11,6 +11,7 @@ This user guide have been tested on Ubuntu version 16.04.
  - Any Unix-based operating system
  - Java 8
  - Python 3
+ - Groovy Version: 2.5.1, JVM: 1.8.0_121
  
 ## Database requirements 
 1. Download [MCAP](https://drive.google.com/file/d/13N0meotI2rTfbLt-GuL1ic-O3uokLvwH/view?usp=sharing) database into the directory `./VSIM/annovar/humandb` 
@@ -24,7 +25,7 @@ This user guide have been tested on Ubuntu version 16.04.
 ```
 Make sure that all the database inside the directory `./VSIM/db` 
 
-4. Download script [loadModeInh.groovy](https://github.com/azzatha/VSIM/blob/master/VSIM/ClinVar/loadModeInh.groovy) to `./VSIM/ClinVar` folder
+4. Download script [loadModeInh.groovy](https://github.com/azzatha/VSIM/blob/master/VSIM/ClinVar/loadModeInh.groovy) to `./VSIM/ClinVar` folder. Then
 Run the script
 ```
     groovy ./ClinVar/loadModeInh.groovy | grep "^OMIM" > ./ClinVar/omim_mode.txt
