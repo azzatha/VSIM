@@ -26,7 +26,7 @@
     <!--Theme Responsive css-->
     <link rel="stylesheet" href="css/responsive.css" />
 
-    <script type="text/javascript" src="./js/ideogram.min.js"></script>
+    <script type="text/javascript" src="js/ideogram.min.js"></script>
     <style>
         ul {
             float: center;
@@ -281,7 +281,7 @@
             var selectedTracks;
             var values;
 
-            if (UrlExists('./VSIM/VisFiles/' + filename)) {
+            if (UrlExists('./VisFiles/' + filename)) {
                 document.getElementById('appers').style["display"] = "block";
 
                 var config = {
@@ -292,7 +292,7 @@
                     chrHeight: 400,
                     assembly: 'GRCh37',
                     //annotationsPath: 'https://raw.githubusercontent.com/azzatha/Visualization/6b28fa25d43c996005147ef1ba9d18df9271b5e7/task2up_slid.json',
-                    annotationsPath: './VSIM/VisFiles/' + filename,
+                    annotationsPath: './VisFiles/' + filename,
                     annotationsNumTracks: 5,
                     annotationsDisplayedTracks: [1, 2, 3, 4, 5],
                 };
