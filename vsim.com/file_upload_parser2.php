@@ -11,7 +11,7 @@ if (!$fileTmpLoc1) { // if file not chosen
     exit();
 }
 
-if (move_uploaded_file($fileTmpLoc1, "./VSIM/$fileName1")) {
+if (move_uploaded_file($fileTmpLoc1, "/app/VSIM/$fileName1")) {
     echo "$fileName1 upload is complete";
 } else {
     echo "move_uploaded_file failed";
