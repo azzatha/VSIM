@@ -19,7 +19,7 @@ bgzip $2
 tabix -p vcf $2.gz
 
 #1- Merge the two file
-/usr/bin/vcf-merge $1.gz $2.gz > ./Simulation/Parent_$1_$2.vcf
+vcf-merge $1.gz $2.gz > ./Simulation/Parent_$1_$2.vcf
 
 bgzip  ./Simulation/Parent_$1_$2.vcf
 tabix -p vcf ./Simulation/Parent_$1_$2.vcf.gz
@@ -36,19 +36,19 @@ done
 
 # ClivVar 
 # Find the intersect with CV Database,and Run Python of the input file for CV
-/var/www/vsim.com/bedtools2/bin/bedtools intersect -wa -wb -f 1.00 -r -a ./db/CV_DB.vcf -b ./Simulation/CreatedChildren/$1_$2_children/*.vcf.gz  -filenames > ./ClinVar/CV_$1_$2
+bedtools intersect -wa -wb -f 1.00 -r -a ./db/CV_DB.vcf -b ./Simulation/CreatedChildren/$1_$2_children/*.vcf.gz  -filenames > ./ClinVar/CV_$1_$2
 python ./ClinVar/CV_Children.py $1_$2 $child
 
 # GWAS
-/var/www/vsim.com/bedtools2/bin/bedtools intersect -wb -wa -f 0.50 -r -a ./db/GWAS_DB.vcf -b ./Simulation/CreatedChildren/$1_$2_children/*.vcf.gz  -filenames  > ./GWAS/GW_$1_$2
+bedtools intersect -wb -wa -f 0.50 -r -a ./db/GWAS_DB.vcf -b ./Simulation/CreatedChildren/$1_$2_children/*.vcf.gz  -filenames  > ./GWAS/GW_$1_$2
 python ./GWAS/Gwas_children.py $1_$2 $child
 
 # PharmGKB
-/var/www/vsim.com/bedtools2/bin/bedtools intersect -wb -wa  -a  ./db/Pharm_DB.vcf -b ./Simulation/CreatedChildren/$1_$2_children/*.vcf.gz  -filenames > ./PharmGKB/PhG_$1_$2
+bedtools intersect -wb -wa  -a  ./db/Pharm_DB.vcf -b ./Simulation/CreatedChildren/$1_$2_children/*.vcf.gz  -filenames > ./PharmGKB/PhG_$1_$2
 python ./PharmGKB/PharmGKB_Children.py $1_$2 $child
 
 # Dida
-/var/www/vsim.com/bedtools2/bin/bedtools intersect -wa -wb  -a ./db/DIDA_DB.vcf -b ./Simulation/CreatedChildren/$1_$2_children/*.vcf.gz  -filenames > ./DIDA/Di_$1_$2
+bedtools intersect -wa -wb  -a ./db/DIDA_DB.vcf -b ./Simulation/CreatedChildren/$1_$2_children/*.vcf.gz  -filenames > ./DIDA/Di_$1_$2
 python ./DIDA/Dida_Children.py $1_$2 $child
 
 
