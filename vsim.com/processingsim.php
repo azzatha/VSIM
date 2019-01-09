@@ -29,7 +29,7 @@
 <body>
     <?php
 
-    chdir('./VSIM/');
+    chdir('/app/VSIM/');
     if ($_FILES['fileToUpload1']['name']== "" ||  $_FILES['fileToUpload2']['name']== "")  {
         	echo("Please select two files to upload");
         	echo($_FILES['fileToUpload1']['name']);
