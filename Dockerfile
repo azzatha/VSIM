@@ -37,3 +37,5 @@ RUN wget https://github.com/brentp/vcfanno/releases/download/v0.3.1/vcfanno_linu
     mv vcfanno_linux64 vcfanno && \
     mv vcfanno /usr/local/bin && \
     chmod 755 /usr/local/bin/vcfanno
+
+RUN ln -s /app/VSIM /var/www/html/
