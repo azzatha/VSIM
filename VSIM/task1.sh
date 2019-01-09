@@ -21,7 +21,7 @@ cat ./ClinVar/headerInfo.txt ./ClinVar/clinvar_Data2.vcf > ./ClinVar/clinvar_Dat
 #Annotate the resulting file:
 bgzip ./db/CV_DB_Anno.vcf
 tabix -p vcf ./db/CV_DB_Anno.vcf.gz
-/usr/bin/vcfanno_linux64 -permissive-overlap ./db/conf_ClinVar.toml  ./ClinVar/clinvar_Data_Annotate.vcf > ./ClinVar/Annotat_$1
+vcfanno -permissive-overlap ./db/conf_ClinVar.toml  ./ClinVar/clinvar_Data_Annotate.vcf > ./ClinVar/Annotat_$1
 egrep -v "^#" ./ClinVar/Annotat_$1 > ./ClinVar/Annotat_$1_noHeader.vcf
 python ./ClinVar/CV_Individual.py $1
 
