@@ -1,4 +1,5 @@
 <!doctype html>
+
 <html class="no-js" lang="">
 
 <head>
@@ -8,13 +9,10 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
-
     <link rel="stylesheet" href="fonts/stylesheet.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
-
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!--        <link rel="stylesheet" href="assets/css/bootstrap-theme.min.css">-->
-
     <link rel="stylesheet" href="css/customicon.css">
     <link rel="stylesheet" href="css/linearicons.css">
     <link rel="stylesheet" href="css/animate.css">
@@ -25,319 +23,167 @@
     <link rel="stylesheet" href="css/style.css">
     <!--Theme Responsive css-->
     <link rel="stylesheet" href="css/responsive.css" />
-
     <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
     <script src="./node_modules/clipboard/dist/clipboard.min.js"></script>
 </head>
 
 <body>
-    <div class='preloader'>
-        <div class='loaded'>&nbsp;</div>
-    </div>
-    <header id="header" class="navbar-fixed-top">
-        <div class="container">
-            <div class="main_menu wow fadeInDown" data-wow-duration="2s">
-                <nav class="navbar navbar-default">
-                    <div class="container-fluid">
-                        <!-- Brand and toggle get grouped for better mobile display -->
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                            <a class="navbar-brand our_logo" href="#">VSIM</a>
+    <?php
+    chdir('/app/VSIM/');
+    if($_FILES['fileToUpload']['name']== "") {
+        	echo("Please select a file to upload");
+        	echo($_FILES['fileToUpload']['name']);
+        }
+    else {
+       $fileName=  $_FILES['fileToUpload']['name'];
+       $unique_name= md5( uniqid() . $fileName . time() .'vcf');
+       #rename( $fileName, $unique_name) ;
+       $testlink='../task1result.html?file='.$unique_name.'.json';
+      }
+    ?>
 
-                        </div>
-
-                        <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav navbar-right">
-                                <li class="homeLink"><a href="index.html">HOme</a></li>
-                                <li><a href="example.html">Example</a></li>
-                                <li><a href="contact.html">Contact</a></li>
-                            </ul>
-                        </div>
-                        <!-- /.navbar-collapse -->
-                    </div>
-                    <!-- /.container-fluid -->
-                </nav>
-
-            </div>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div class='preloader'>
+            <div class='loaded'>&nbsp;</div>
         </div>
-    </header>
-    <!--Home page style-->
-
-    <!-- Sections -->
-    <section id="bener" class="">
-        <div class="bener_overlay">
+        <header id="header" class="navbar-fixed-top">
             <div class="container">
-                <div class="bener_content">
-                    <h1> Welcome to VSIM</h1>
-                    <p>Visualization and Simulation of the Human Genome Diseases</p>
-                    <br />
-                </div>
-            </div>
-            <!-- /container -->
-
-        </div>
-    </section>
-
-    <section id="our_features">
-        <div class="container">
-            <div class="features_top text-center">
-                <h2 class="title_border">Best of our features</h2>
-                <div class="separator"></div>
-                <p>VSIM is a tool that can efficiently identify the causative variants by referencing well-known databases for variants in whole genomes associated with different kind of diseases. Moreover, it can be used for premarital genetic screening by simulating a population of children and analyze the disorder they might be carrying. The output format provide a better understanding of such large genomics data. VSIM thus helps biologists and marriage counsellor to visualize a variety of genomic variants associated with diseases seamlessly.
-                </p>
-            </div>
-
-            <div class="features_contant">
-                <div class="row">
-                    <div class="best_features_contant_top text-center">
-                        <div class="col-md-4 col-sm-4">
-                            <div class="single_features">
-                                <!-- <i class="icon icon-global" size="50"></i> -->
-                                <img src="img/database.svg" alt="" />
-                                <h2>Up to Date Databases</h2>
-                                <p>The tool guarantees to use the latest well-known database for diseases</p>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4 col-sm-4">
-                            <div class="single_features">
-                                <img src="img/abiogeny-clipart-chromosome-1.png" alt="" />
-                                <h2>Chromosomal View </h2>
-                                <p>Clear and informatic annotation that help to understand the variants in a better way.</p>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4 col-sm-4">
-                            <div class="single_features">
-                                <img src="img/53114-heart-family-clipart.png" alt="" />
-                                <h2>Realistic Simulation</h2>
-                                <p>By using the simulation you will receive a thorough expected information about the diseases associated with the children</p>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <!-- End Best Features Bottom -->
-
-            </div>
-        </div>
-        </div>
-    </section>
-
-    <section id="healp" class="text-center">
-        <div class="container">
-            <div class="healp_contant">
-                <footer id="footer">
-                    <div class="container">
-
-                        <div class="row">
-                            <div class="col-md-3 col-sm-3 col-xs-12">
-                                <div class="single_footer">
-                                    <!-- id="choosePers" -->
-                                    <h2>Personal Interpretation</h2>
-
-                                    <form id="upload_form" action="processing.php" method="post" enctype="multipart/form-data">
-
-                                        <p class="topic">Analysis of the Human Genome
-                                            <br />
-                                        </p>
-                                        Upload your genome variants file (vcf format):
-
-                                        <input type="file" name="fileToUpload" id="fileToUpload" accept=".vcf">
-
-                                        <progress id="progressBar" value="0" max="100" style="width:300px;"></progress>
-                                        <h3 id="status"></h3>
-                                        <p id="loaded_n_total"></p>
-                                        <!-- E-mail:-->
-                                        <!--  <input type="email" name="email" placeholder="(optinal)">-->
-                                        <br />
-                                        <br />
-                                        <!-- <input type="submit"> -->
-                                        <input id="analy1" type="submit" value="Analyze" onclick="uploadFile()">
-                                    </form>
+                <div class="main_menu wow fadeInDown" data-wow-duration="2s">
+                    <nav class="navbar navbar-default">
+                        <div class="container-fluid">
+                            <!-- Brand and toggle get grouped for better mobile display -->
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                                <a class="navbar-brand our_logo" href="#">VSIM</a>
+                                <div class="call_us">
+                                    <i class="fa fa-phone"></i> +966 533 422 088
                                 </div>
                             </div>
 
-                            <div class="col-md-3 col-sm-3 col-xs-12">
-                                <div class="single_footer">
-                                    <h2>Premarital Testing</h2>
-                                    <form id="upload_form2" action="processingsim.php" method="post" enctype="multipart/form-data">
-                                        <p class="topic">Simulate Population of Children
-                                            <br />
-                                        </p>
-                                        Upload the file for the mother: (vcf format):
+                            <!-- Collect the nav links, forms, and other content for toggling -->
+                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-                                        <input type="file" name="fileToUpload1" id="fileToUpload1" accept=".vcf">
-                                        <br>
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li class="homeLink"><a href="index.html">HOme</a></li>
+                                    <li><a href="example.html">Example</a></li>
+                                    <li><a href="contact.html">Contact</a></li>
+                                    <!-- <li><a href="#" style="background:#6FB048;color:#fff;border-radius:2px;padding:5px 10px;margin-top:10px;">Get Stared</a></li> -->
+                                </ul>
+                            </div>
+                            <!-- /.navbar-collapse -->
+                        </div>
+                        <!-- /.container-fluid -->
+                    </nav>
 
-                                        <!-- mother progress bar  -->
-                                        <progress id="progressBar1" value="0" max="100" style="width:300px;"></progress>
-                                        <h3 id="status1"></h3>
-                                        <p id="loaded_n_total1"></p>
+                </div>
+            </div>
+        </header>
+        <!--Home page style-->
 
-                                        Upload the file for the father: (vcf format):
+        <!-- Sections -->
+        <section id="bener" class="">
+            <div class="bener_overlay">
+                <div class="container">
+                    <div class="bener_content">
+                        <h1> Welcome to VSIM</h1>
+                        <p>Visualization and Simulation of the Human Genome Diseases</p>
+                        <br />
+                    </div>
+                </div>
+                <!-- /container -->
+            </div>
+        </section>
 
-                                        <input type="file" name="fileToUpload2" id="fileToUpload2" accept=".vcf">
-                                        <br>
+        <section id="our_features_waiting">
+            <div class="container">
+                <div class="features_top text-center">
+                    <h2 class="title_border">Your file successfully uploaded... </h2>
+                    <div class="separator"></div>
+                    <p id="waitpage">You will be redirected to result page in a few seconds if your file is small!
+                        <br>
+                        <br>Please copy the link below to view status or results later.
+                        <br>
+                        <br>
+                        <a id="myLink" href="<?php echo $testlink; ?>">
+                            <?php echo $testlink; ?>
+                        </a>
+                        <br>
+                        <br>
+                    </p>
+                </div>
+            </div>
+        </section>
 
-                                        <!-- father progress bar  -->
-                                        <progress id="progressBar2" value="0" max="100" style="width:300px;"></progress>
-                                        <h3 id="status2"></h3>
-                                        <p id="loaded_n_total2"></p>
+        <script type="text/javascript">
+            function myFunction() {
+                var copyText = document.getElementById("myInput");
+                copyText.select();
+                document.execCommand("copy");
+                alert("Copied the text: " + copyText.value);
+            }
+        </script>
 
-                                        Enter Number of children you want to simulate:
+        <script>
+            var copyTextareaBtn = document.querySelector('.js-textareacopybtn');
 
-                                        <input type="number" name="childNum" id="childNum" placeholder="50" size="10">
-                                        <br>
+            copyTextareaBtn.addEventListener('click', function(event) {
+                var copyTextarea = document.querySelector('.js-copytextarea');
+                copyTextarea.focus();
+                copyTextarea.select();
 
-                                        <input id="analy2" type="submit" value="Analyze" onclick="uploadFile2()">
-                                    </form>
-                                </div>
+                try {
+                    var successful = document.execCommand('copy');
+                    var msg = successful ? 'successful' : 'unsuccessful';
+                    console.log('Copying text command was ' + msg);
+                } catch (err) {
+                    console.log('Oops, unable to copy');
+                }
+            });
+        </script>
+
+        <!--Footer-->
+        <footer id="footer">
+            <div class="container">
+
+                <div class="row">
+                </div>
+
+                <div class="footer_bottom">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="single_footer_bottom">
+                                <p class="wow zoomIn" data-wow-duration="1s">Made with <i class="fa fa-heart"></i> </p>
                             </div>
                         </div>
                     </div>
-                </footer>
-            </div>
-        </div>
-    </section>
-
-    <!--Footer-->
-    <footer id="footer">
-        <div class="container">
-
-            <div class="row">
-
-            </div>
-
-            <div class="footer_bottom">
-                <div class="row">
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <div class="single_footer_bottom">
-                            <p class="wow zoomIn" data-wow-duration="1s">Made with <i class="fa fa-heart"></i> </p>
-                        </div>
-                    </div>
                 </div>
+                <!-- End footer bottom -->
             </div>
-            <!-- End footer bottom -->
-        </div>
-    </footer>
-    <script src="js/vendor/jquery-1.11.2.min.js"></script>
-    <script src="js/vendor/bootstrap.min.js"></script>
-    <script src="js/jquery.easing.1.3.js"></script>
-    <script src="js/wow.min.js"></script>
-    <script src="js/plugins.js"></script>
-    <script src="js/main.js"></script>
+        </footer>
 
-    <!-- Progress bar  -->
-    <script>
-        function _(el) {
-            return document.getElementById(el);
-        }
+        <script src="js/vendor/jquery-1.11.2.min.js"></script>
+        <script src="js/vendor/bootstrap.min.js"></script>
+        <script src="js/jquery.easing.1.3.js"></script>
+        <script src="js/wow.min.js"></script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
 
-        function uploadFile() {
-            var file = _("fileToUpload").files[0];
-            // alert(file.name+" | "+file.size+" | "+file.type);
-            var formdata = new FormData();
-            formdata.append("fileToUpload", file);
-            var ajax = new XMLHttpRequest();
-            ajax.upload.addEventListener("progress", progressHandler, false);
-            ajax.addEventListener("load", completeHandler, false);
-            ajax.addEventListener("error", errorHandler, false);
-            ajax.addEventListener("abort", abortHandler, false);
-            ajax.open("POST", "file_upload_parser.php");
-            ajax.send(formdata);
-        }
+        <?php
 
-        function uploadFile2() {
-            var file1 = _("fileToUpload1").files[0];
-            var formdata1 = new FormData();
-            formdata1.append("fileToUpload1", file1);
-            var ajax1 = new XMLHttpRequest();
-            ajax1.upload.addEventListener("progress", progressHandler1, false);
-            ajax1.addEventListener("load", completeHandler1, false);
-            ajax1.addEventListener("error", errorHandler1, false);
-            ajax1.addEventListener("abort", abortHandler1, false);
-            ajax1.open("POST", "file_upload_parser2.php");
-            ajax1.send(formdata1);
+	$command= ('./task1.sh '. $fileName);
+	#$str= exec($command . " > /dev/null &" ); 
+	#file_put_contents("task1log.txt", $str);
+	$str= shell_exec($command.' 2>&1 > out.log &');
+	file_put_contents("task1log.txt", $str);
 
-            var file2 = _("fileToUpload2").files[0];
-            var formdata2 = new FormData();
-            formdata2.append("fileToUpload2", file2);
-            var ajax2 = new XMLHttpRequest();
-            ajax2.upload.addEventListener("progress", progressHandler2, false);
-            ajax2.addEventListener("load", completeHandler2, false);
-            ajax2.addEventListener("error", errorHandler2, false);
-            ajax2.addEventListener("abort", abortHandler2, false);
-            ajax2.open("POST", "file_upload_parser3.php");
-            ajax2.send(formdata2);
-        }
-
-        function progressHandler(event) {
-            _("loaded_n_total").innerHTML = "Uploaded " + event.loaded + " bytes of " + event.total;
-            var percent = (event.loaded / event.total) * 100;
-            _("progressBar").value = Math.round(percent);
-            _("status").innerHTML = Math.round(percent) + "% uploaded... please wait";
-        }
-
-        function completeHandler(event) {
-            _("status").innerHTML = event.target.responseText;
-            _("progressBar").value = 0; //wil clear progress bar after successful upload
-        }
-
-        function errorHandler(event) {
-            _("status").innerHTML = "Upload Failed";
-        }
-
-        function abortHandler(event) {
-            _("status").innerHTML = "Upload Aborted";
-        }
-
-        function progressHandler1(event) {
-            _("loaded_n_total1").innerHTML = "Uploaded " + event.loaded + " bytes of " + event.total;
-            var percent = (event.loaded / event.total) * 100;
-            _("progressBar1").value = Math.round(percent);
-            _("status1").innerHTML = Math.round(percent) + "% uploaded... please wait";
-        }
-
-        function completeHandler1(event) {
-            _("status1").innerHTML = event.target.responseText;
-            _("progressBar1").value = 0; //wil clear progress bar after successful upload
-        }
-
-        function errorHandler1(event) {
-            _("status1").innerHTML = "Upload Failed";
-        }
-
-        function abortHandler1(event) {
-            _("status1").innerHTML = "Upload Aborted";
-        }
-
-        function progressHandler2(event) {
-            _("loaded_n_total2").innerHTML = "Uploaded " + event.loaded + " bytes of " + event.total;
-            var percent = (event.loaded / event.total) * 100;
-            _("progressBar2").value = Math.round(percent);
-            _("status2").innerHTML = Math.round(percent) + "% uploaded... please wait";
-        }
-
-        function completeHandler2(event) {
-            _("status2").innerHTML = event.target.responseText;
-            _("progressBar2").value = 0; //wil clear progress bar after successful upload
-        }
-
-        function errorHandler2(event) {
-            _("status2").innerHTML = "Upload Failed";
-        }
-
-        function abortHandler2(event) {
-            _("status2").innerHTML = "Upload Aborted";
-        }
-    </script>
+        ?>
 
 </body>
 
