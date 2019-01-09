@@ -29,22 +29,16 @@
 
 <body>
     <?php
-    chdir('./VSIM/');
+    chdir('/app/VSIM/');
     if($_FILES['fileToUpload']['name']== "") {
         	echo("Please select a file to upload");
         	echo($_FILES['fileToUpload']['name']);
         }
-
     else {
-
-       $fileName=  $_FILES["fileToUpload"]["name"];
-       $unique_name =md5( uniqid() . $fileName . time() ."vcf");
-       rename( $fileName, $unique_name) ;
-
-       $link='http://10.254.145.133/task1result.html?'.$unique_name;
-       $alink='http://10.254.145.133/task1result.html?file='.$fileName.".json";
-       $testlink='../task1result.html?file='.$unique_name.".json";
-
+       $fileName=  $_FILES['fileToUpload']['name'];
+       $unique_name= md5( uniqid() . $fileName . time() .'vcf');
+       #rename( $fileName, $unique_name) ;
+       $testlink='../task1result.html?file='.$unique_name.'.json';
       }
     ?>
 
@@ -183,7 +177,7 @@
 
         <?php
 
-	$command= ('./task1.sh '. $unique_name);
+	$command= ('./task1.sh '. $fileName);
 	#$str= exec($command . " > /dev/null &" ); 
 	#file_put_contents("task1log.txt", $str);
 	$str= shell_exec($command.' 2>&1 > out.log &');
