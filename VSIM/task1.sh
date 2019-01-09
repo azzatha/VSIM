@@ -12,7 +12,7 @@ echo "start $1"
 #groovy ./ClinVar/loadModeInh.groovy | grep "^OMIM" > ./1-ClinVar/omim_mode.txt
 
 # Find the intersect with CV Database,and Run Python of the input file for CV
-/var/www/vsim.com/bedtools2/bin/bedtools intersect -wb -f 1.00 -r -a ./db/CV_DB.vcf -b $1 > ./ClinVar/clinvar_Data.vcf
+bedtools intersect -wb -f 1.00 -r -a ./db/CV_DB.vcf -b $1 > ./ClinVar/clinvar_Data.vcf
 cut -f9,10,11,12,13,14,15,16,17,18 ./ClinVar/clinvar_Data.vcf > ./ClinVar/clinvar_Data2.vcf
 egrep -v "^#" ./db/CV_DB.vcf > ./db/CV_Pathogenic_.vcf
 cat ./db/headerCV.txt ./db/CV_Pathogenic_.vcf >  ./db/CV_DB_Anno.vcf
@@ -35,17 +35,17 @@ rm ./db/CV_DB_Anno.vcf.gz.tbi
 
 # 2- GWAS Work
 # Find the intersect with GWAS  Database, and Run Python of the input file for GW
-/var/www/vsim.com/bedtools2/bin/bedtools intersect -wb -wa -f 1.0 -r -a ./db/GWAS_DB.vcf  -b $1 > ./GWAS/gwas_Data_$1
+bedtools intersect -wb -wa -f 1.0 -r -a ./db/GWAS_DB.vcf  -b $1 > ./GWAS/gwas_Data_$1
 python ./GWAS/GWAS_Individual.py $1 
 
 # 3- PharmGKB Work
 # Find the intersect with PharmGKB  Database, and Run Python of the input file for PG
-/var/www/vsim.com/bedtools2/bin/bedtools intersect -wb -wa -f 1.0 -r -a ./db/Pharm_DB.vcf -b  $1 > ./PharmGKB/PhG_$1
+bedtools intersect -wb -wa -f 1.0 -r -a ./db/Pharm_DB.vcf -b  $1 > ./PharmGKB/PhG_$1
 python ./PharmGKB/PharmGKB_Individual.py $1
 
 # 4- Dida Work
 # Find the intersect with Dida  Database, and Run Python of the input file for Di
-/var/www/vsim.com/bedtools2/bin/bedtools intersect -wa -wb -f 1.00 -r -a ./db/DIDA_DB.vcf -b  $1 > ./DIDA/Di_$1
+bedtools intersect -wa -wb -f 1.00 -r -a ./db/DIDA_DB.vcf -b  $1 > ./DIDA/Di_$1
 python ./DIDA/DIDA_Individual.py $1
 
 # 5- MCAP annotation
