@@ -14,9 +14,9 @@ moth=$(grep -w '#CHROM' $1 |  awk '{ print $10 }')
 fath=$(grep -w '#CHROM' $2 |  awk '{ print $10 }')
 
 bgzip $1
-tabix -p vcf $1.gz
+tabix -p vcf -f $1.gz
 bgzip $2
-tabix -p vcf $2.gz
+tabix -p vcf -f $2.gz
 
 #1- Merge the two file
 vcf-merge $1.gz $2.gz > ./Simulation/Parent_$1_$2.vcf
