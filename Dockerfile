@@ -38,4 +38,12 @@ RUN wget https://github.com/brentp/vcfanno/releases/download/v0.3.1/vcfanno_linu
     mv vcfanno /usr/local/bin && \
     chmod 755 /usr/local/bin/vcfanno
 
+
+# https://stackoverflow.com/questions/51656593/installing-java-on-docker-php7-1-apache-stretch/51657297
+RUN mkdir -p /usr/share/man/man1
+RUN apt-get -y install default-jre-headless
+# https://askubuntu.com/questions/695560/assistive-technology-not-found-awterror
+RUN sed -i -e '/^assistive_technologies=/s/^/#/' /etc/java-*-openjdk/accessibility.properties
+
+
 RUN ln -s /app/VSIM /var/www/html/
