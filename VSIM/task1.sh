@@ -36,17 +36,17 @@ rm ./db/CV_DB_Anno.vcf.gz.tbi
 # 2- GWAS Work
 # Find the intersect with GWAS  Database, and Run Python of the input file for GW
 bedtools intersect -wb -wa -f 1.0 -r -a ./db/GWAS_DB.vcf  -b $1 > ./GWAS/gwas_Data_$1
-python ./GWAS/GWAS_Individual.py $1 
+python3 ./GWAS/GWAS_Individual.py $1 
 
 # 3- PharmGKB Work
 # Find the intersect with PharmGKB  Database, and Run Python of the input file for PG
 bedtools intersect -wb -wa -f 1.0 -r -a ./db/Pharm_DB.vcf -b  $1 > ./PharmGKB/PhG_$1
-python ./PharmGKB/PharmGKB_Individual.py $1
+python3 ./PharmGKB/PharmGKB_Individual.py $1
 
 # 4- Dida Work
 # Find the intersect with Dida  Database, and Run Python of the input file for Di
 bedtools intersect -wa -wb -f 1.00 -r -a ./db/DIDA_DB.vcf -b  $1 > ./DIDA/Di_$1
-python ./DIDA/DIDA_Individual.py $1
+python3 ./DIDA/DIDA_Individual.py $1
 
 # 5- MCAP annotation
 # Run Annovar to annotae the file with Mendelian Clinically Applicable Pathogenicity (M-CAP) Score
@@ -61,19 +61,19 @@ rm  MCAP_$1.hg19_multianno.vcf
 
 # Add the header info
 cat ./IndvResults/header.txt ./IndvResults/MCAP_$1 > ./IndvResults/FilterMCAP_$1
-python ./IndvResults/MCAPRes.py $1
+python3 ./IndvResults/MCAPRes.py $1
 
 rm ./IndvResults/MCAP_$1
 rm ./IndvResults/FilterMCAP_$1
 
 # 6- Combine all created files:
-python ./IndvResults/CombineAllInfo.py $1
+python3 ./IndvResults/CombineAllInfo.py $1
 
 # 7- Prepare the file for Vis
-python ./VisFiles/PrepareJForJson.py $1
+python3 ./VisFiles/PrepareJForJson.py $1
 
 # 8- Creat Json File
-python ./VisFiles/JsonIndv.py $1 > ./VisFiles/$1.json
+python3 ./VisFiles/JsonIndv.py $1 > ./VisFiles/$1.json
 
 #Vislization
 
