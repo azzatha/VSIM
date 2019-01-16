@@ -21,8 +21,8 @@ tabix -p vcf $2.gz
 #1- Merge the two file
 vcf-merge $1.gz $2.gz > ./Simulation/Parent_$1_$2.vcf
 
-bgzip  ./Simulation/Parent_$1_$2.vcf
-tabix -p vcf ./Simulation/Parent_$1_$2.vcf.gz
+bgzip -f ./Simulation/Parent_$1_$2.vcf
+tabix -p vcf -f ./Simulation/Parent_$1_$2.vcf.gz
 
 mkdir ./Simulation/CreatedChildren/$1_$2_children; 
 
