@@ -61,3 +61,4 @@ The following figure provides an example of the simulation result.
 - VSIM generates chromosomal views based on chromosomal ideograms and shows the chromosomal positions at which a functional variant has been found. 
 - Different categories of variants are shown in different colors, and it is possible to filter variants by their type (whether they are Mendelian disease variants, pharmacogenomic variants, etc.). 
 - Users are able to obtain additional information about variants when selecting a single variant, and can follow a hyper-link to a website with additional information and evidence about the type of variant. 
+- You can find the details of updated rtg-simulation here: [RTG-Simulation-tool](https://github.com/bio-ontology-research-group/RTG-Simulation-tool)
