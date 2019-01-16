@@ -45,8 +45,8 @@
        $unique_name1 =md5(uniqid() . $fileName1."vcf");
        $unique_name2 =md5(uniqid() . $fileName2."vcf");
 
-       $link='http://10.254.145.133/task2result.html?'.$unique_name1.$unique_name2."json";
-       $alink='http://10.254.145.133/task2result.html?file='.$fileName1.'-'.$fileName2.".json";
+       $link='../task2result.html?'.$unique_name1.$unique_name2.".json";
+       $alink='../task2result.html?file='.$fileName1.'-'.$fileName2.".json";
 
        }
 
