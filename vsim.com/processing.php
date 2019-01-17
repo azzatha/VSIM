@@ -34,7 +34,7 @@
         	echo("Please select a file to upload");
         	echo($_FILES['fileToUpload']['name']);
         }
-    else {
+    else {
        $fileName=  $_FILES['fileToUpload']['name'];
        $unique_name= md5( uniqid() . $fileName . time() .'vcf');
        #rename( $fileName, $unique_name) ;
