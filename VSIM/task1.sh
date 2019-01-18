@@ -9,7 +9,7 @@ echo "start $1"
 
 # 1- CV Work
 # Load New OMIM:
-#groovy ./ClinVar/loadModeInh.groovy | grep "^OMIM" > ./1-ClinVar/omim_mode.txt
+#groovy ./ClinVar/loadModeInh.groovy | grep "^OMIM" > ./ClinVar/omim_mode.txt
 
 # Find the intersect with CV Database,and Run Python of the input file for CV
 bedtools intersect -wb -f 1.00 -r -a ./db/CV_DB.vcf -b $1 > ./ClinVar/clinvar_Data.vcf
@@ -19,7 +19,7 @@ cat ./db/headerCV.txt ./db/CV_Pathogenic_.vcf >  ./db/CV_DB_Anno.vcf
 cat ./ClinVar/headerInfo.txt ./ClinVar/clinvar_Data2.vcf > ./ClinVar/clinvar_Data_Annotate.vcf
 
 #Annotate the resulting file:
-bgzip -f ./db/CV_DB_Anno.vcf
+bgzip  ./db/CV_DB_Anno.vcf
 tabix -p vcf -f ./db/CV_DB_Anno.vcf.gz
 vcfanno -permissive-overlap ./db/conf_ClinVar.toml  ./ClinVar/clinvar_Data_Annotate.vcf > ./ClinVar/Annotat_$1
 egrep -v "^#" ./ClinVar/Annotat_$1 > ./ClinVar/Annotat_$1_noHeader.vcf
