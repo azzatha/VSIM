@@ -34,11 +34,11 @@
         	echo("Please select a file to upload");
         	echo($_FILES['fileToUpload']['name']);
         }
-    else {
-       $fileName=  $_FILES['fileToUpload']['name'];
+    else {$fileName=  $_FILES['fileToUpload']['name'];
        $unique_name= md5( uniqid() . $fileName . time() .'vcf');
        #rename( $fileName, $unique_name) ;
        $testlink='../task1result.html?file='.$unique_name.'.json';
+       $alink='../task1result.html?file='.$fileName.'.json';
       }
     ?>
 
@@ -111,16 +111,14 @@
                         <br>Please copy the link below to view status or results later.
                         <br>
                         <br>
-                        <a id="myLink" href="<?php echo $testlink; ?>">
+                        <a id="myLink" href="<?php echo $alink; ?>">
                             <?php echo $testlink; ?>
                         </a>
                         <br>
                         <br>
                     </p>
-                </div>
-            </div>
+                </div> </div>
         </section>
-
         <script type="text/javascript">
             function myFunction() {
                 var copyText = document.getElementById("myInput");
@@ -177,13 +175,12 @@
 
         <?php
 
-	$command= ('./task1.sh '. $fileName);
-	#$str= exec($command . " > /dev/null &" ); 
-	#file_put_contents("task1log.txt", $str);
-	$str= shell_exec($command.' 2>&1 > out.log &');
+	$command= ('bash /app/VSIM/task1.sh '. $fileName);
+	$str= shell_exec($command . " > /dev/null &" ); 
+	#$str= shell_exec($command.' 2>&1 > out.log &');
+	#echo $str;
 	file_put_contents("task1log.txt", $str);
-
-        ?>
+	?>
 
 </body>
 
