@@ -39,7 +39,7 @@ Make sure that all the database inside the directory `./VSIM/db`
 ```
 4. Run VSIM-web
 ```
-   docker run -it -p 80:80 vsim-web
+   docker run -it -p 8080:80 vsim-web
 ```
 
 ## Usage:
