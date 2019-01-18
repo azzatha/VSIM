@@ -36,8 +36,7 @@
         	echo($_FILES['fileToUpload2']['name']);
     }
 
-    else {
-       $fileName1= $_FILES["fileToUpload1"]["name"];
+    else {$fileName1= $_FILES["fileToUpload1"]["name"];
  	   $fileName2= $_FILES["fileToUpload2"]["name"];
        $childNum= $_POST['childNum'];
        #print_r($fileName2);
@@ -169,9 +168,12 @@
         <script src="js/main.js"></script>
 
         <?php
-        $command= ('./task2.sh '. $fileName1." ".$fileName2." ".$childNum);  
+        $command= ('bash /app/VSIM/task2.sh '. $fileName1." ".$fileName2." ".$childNum);  
         $str= shell_exec($command. '  > out2.log 2>&1  &');
 
+		#$str= shell_exec($command.' 2>&1 > out.log &');
+		#echo $str;
+		file_put_contents("task2log.txt", $str);
         ?>
 
 </body>
