@@ -1,82 +1,95 @@
 #!/bin/bash
-# Indv Work: This code will generate the final files for vis:
-
-# 1- Update all the DB and process them
-# -------------------------------------
 
 # Take the input file as parameter:
-echo "start $1"
+echo "Mother File: $1"
+echo "Father File: $2" 
+child="$3"
 
-# 1- CV Work
-# Load New OMIM:
-#groovy ./ClinVar/loadModeInh.groovy | grep "^OMIM" > ./ClinVar/omim_mode.txt
+if [ $# -eq 2 ]; then
+    child=50
+fi
 
+echo "Number of simulated Children: " $child
+moth=$(grep -w '#CHROM' $1 |  awk '{ print $10 }')
+fath=$(grep -w '#CHROM' $2 |  awk '{ print $10 }')
+
+bgzip $1
+tabix -p vcf -f $1.gz
+bgzip $2
+tabix -p vcf -f $2.gz
+
+#1- Merge the two file
+vcf-merge $1.gz $2.gz > ./Simulation/Parent_$1_$2.vcf
+
+bgzip  -f ./Simulation/Parent_$1_$2.vcf
+tabix -p vcf -f ./Simulation/Parent_$1_$2.vcf.gz
+
+mkdir ./Simulation/CreatedChildren/$1_$2_children; 
+
+#3- Creat Children
+for c in $(seq 1 $child)
+do
+  ./Simulation/rtg-tools/rtg childsim --mother $moth --father $fath  -i ./Simulation/Parent_$1_$2.vcf.gz  -o ./Simulation/CreatedChildren/$1_$2_children/child$c.vcf.gz -t ./Simulation/1000g_v37_phase2.sdf -s child$c
+done
+
+#4- Analysis
+
+# ClivVar 
 # Find the intersect with CV Database,and Run Python of the input file for CV
-bedtools intersect -wb -f 1.00 -r -a ./db/CV_DB.vcf -b $1 > ./ClinVar/clinvar_Data.vcf
-cut -f9,10,11,12,13,14,15,16,17,18 ./ClinVar/clinvar_Data.vcf > ./ClinVar/clinvar_Data2.vcf
-egrep -v "^#" ./db/CV_DB.vcf > ./db/CV_Pathogenic_.vcf
-cat ./db/headerCV.txt ./db/CV_Pathogenic_.vcf >  ./db/CV_DB_Anno.vcf
-cat ./ClinVar/headerInfo.txt ./ClinVar/clinvar_Data2.vcf > ./ClinVar/clinvar_Data_Annotate.vcf
+bedtools intersect -wa -wb -f 1.00 -r -a ./db/CV_DB.vcf -b ./Simulation/CreatedChildren/$1_$2_children/*.vcf.gz  -filenames > ./ClinVar/CV_$1_$2
+python3 ./ClinVar/CV_Children.py $1_$2 $child
 
-#Annotate the resulting file:
-bgzip  ./db/CV_DB_Anno.vcf
-tabix -p vcf -f ./db/CV_DB_Anno.vcf.gz
-vcfanno -permissive-overlap ./db/conf_ClinVar.toml  ./ClinVar/clinvar_Data_Annotate.vcf > ./ClinVar/Annotat_$1
-egrep -v "^#" ./ClinVar/Annotat_$1 > ./ClinVar/Annotat_$1_noHeader.vcf
-python3 ./ClinVar/CV_Individual.py $1
+# GWAS
+bedtools intersect -wb -wa -f 0.50 -r -a ./db/GWAS_DB.vcf -b ./Simulation/CreatedChildren/$1_$2_children/*.vcf.gz  -filenames  > ./GWAS/GW_$1_$2
+python3 ./GWAS/Gwas_children.py $1_$2 $child
 
-rm ./ClinVar/clinvar_Data.vcf 
-rm ./ClinVar/clinvar_Data2.vcf
-rm ./ClinVar/Annotat_$1
-rm ./ClinVar/Annotat_$1_noHeader.vcf
-rm ./db/CV_Pathogenic_.vcf
-rm ./db/CV_DB_Anno.vcf.gz
-rm ./db/CV_DB_Anno.vcf.gz.tbi
+# PharmGKB
+bedtools intersect -wb -wa  -a  ./db/Pharm_DB.vcf -b ./Simulation/CreatedChildren/$1_$2_children/*.vcf.gz  -filenames > ./PharmGKB/PhG_$1_$2
+python3 ./PharmGKB/PharmGKB_Children.py $1_$2 $child
 
-# 2- GWAS Work
-# Find the intersect with GWAS  Database, and Run Python of the input file for GW
-bedtools intersect -wb -wa -f 1.0 -r -a ./db/GWAS_DB.vcf  -b $1 > ./GWAS/gwas_Data_$1
-python3 ./GWAS/GWAS_Individual.py $1 
+# Dida
+bedtools intersect -wa -wb  -a ./db/DIDA_DB.vcf -b ./Simulation/CreatedChildren/$1_$2_children/*.vcf.gz  -filenames > ./DIDA/Di_$1_$2
+python3 ./DIDA/Dida_Children.py $1_$2 $child
 
-# 3- PharmGKB Work
-# Find the intersect with PharmGKB  Database, and Run Python of the input file for PG
-bedtools intersect -wb -wa -f 1.0 -r -a ./db/Pharm_DB.vcf -b  $1 > ./PharmGKB/PhG_$1
-python3 ./PharmGKB/PharmGKB_Individual.py $1
-
-# 4- Dida Work
-# Find the intersect with Dida  Database, and Run Python of the input file for Di
-bedtools intersect -wa -wb -f 1.00 -r -a ./db/DIDA_DB.vcf -b  $1 > ./DIDA/Di_$1
-python3 ./DIDA/DIDA_Individual.py $1
 
 # 5- MCAP annotation
 # Run Annovar to annotae the file with Mendelian Clinically Applicable Pathogenicity (M-CAP) Score
-perl ./annovar/table_annovar.pl  $1 ./annovar/humandb/ -buildver hg19 -out MCAP_$1 -remove -protocol mcap -operation f -nastring . -vcfinput
+mkdir ./ChildResults/mcap_$1_$2; 
 
-rm MCAP_$1.avinput
-rm MCAP_$1.hg19_multianno.txt
+rm ./Simulation/CreatedChildren/$1_$2_children/*.vcf.gz.tbi
+gunzip ./Simulation/CreatedChildren/$1_$2_children/*
+for file in ./Simulation/CreatedChildren/$1_$2_children/* ; do
+	x=$(basename $file)	
+	#sed -i "" 's/Chr//g' ./Simulation/CreatedChildren/$1_$2_children/$x
+ 	perl ./annovar/table_annovar.pl ./Simulation/CreatedChildren/$1_$2_children/$x  ./annovar/humandb/ -buildver hg19 -out ./ChildResults/mcap_$1_$2/MCAP_$x 	 -remove -protocol mcap -operation f -nastring . -vcfinput
+    rm ./ChildResults/mcap_$1_$2/MCAP_$x.avinput
+	rm ./ChildResults/mcap_$1_$2/MCAP_$x.hg19_multianno.txt
+	
+	perl MCAP_filter.pl ./ChildResults/mcap_$1_$2/MCAP_$x.hg19_multianno.vcf 0.025 > ./ChildResults/mcap_$1_$2/filtered_$x
+	rm  ./ChildResults/mcap_$1_$2/MCAP_$x.hg19_multianno.vcf
+done
 
-# Take all the predicted Pathognic, the Recommended Pathogenicity threshold M-CAP > 0.025
-perl MCAP_filter.pl MCAP_$1.hg19_multianno.vcf 0.025 > ./IndvResults/MCAP_$1
-rm  MCAP_$1.hg19_multianno.vcf
+cat ./ChildResults/mcap_$1_$2/*.vcf > ./ChildResults/mcap_$1_$2/MCAP_AllChild.vcf
 
-# Add the header info
-cat ./IndvResults/header.txt ./IndvResults/MCAP_$1 > ./IndvResults/FilterMCAP_$1
-python3 ./IndvResults/MCAPRes.py $1
+python3 ./ChildResults/MCAP_Combine.py $1_$2 $child
+rm -rfv ./ChildResults/mcap_$1_$2
+rm -rfv ./Simulation/CreatedChildren/$1_$2_children
+rm ./Simulation/Parent_$1_$2.*
+rm ./ChildResults/temp.txt
 
-rm ./IndvResults/MCAP_$1
-rm ./IndvResults/FilterMCAP_$1
 
 # 6- Combine all created files:
-python3 ./IndvResults/CombineAllInfo.py $1
+python3 ./ChildResults/CombineSimResult.py $1_$2 
 
-# 7- Prepare the file for Vis
-python3 ./VisFiles/PrepareJForJson.py $1
+# 7- Vislization
+# Prepare the file for Vis
+python3 ./VisFiles/PrepareJsonChild.py $1_$2
 
-# 8- Creat Json File
-python3 ./VisFiles/JsonIndv.py $1 > ./VisFiles/$1.json
+# Creat Json File
+python3 ./VisFiles/JsonChild.py $1_$2 > ./VisFiles/$1-$2.json
 
-#Vislization
+#echo "Done"
+# visualize
 
-rm ./DIDA/Di_$1
-rm ./PharmGKB/PhG_$1
-rm ./GWAS/gwas_Data_$1
+rm ./VisFiles/ToJsonChild_$1_$2.txt 
+rm ./VisFiles/FinalChild_$1_$2
